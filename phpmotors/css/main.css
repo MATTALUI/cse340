@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  --primary-grey: #8d8d8d;
+  --accent-grey: #bababa;
+  --secondary-blue: #4c96d7;
+  --accent-blue: #a6cbeb;
+  --dark-grey: #3a3a3a;
+  --light: #FFF;
+  --dark: #111;
+}
+
+html {
+  font-family: Roboto;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url('/phpmotors/images/site/checkerboard.jpg');
+  opacity: 0.75;
+}
+
+body {
+  max-width: 90rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+}
+
+header, main {
+  background-color: var(--light);
+}
+
+header, footer, main {
+  display: flex;
+  padding: 1rem;
+}
+
+header {
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+header > a {
+  color: var(--dark-grey);
+}
+
+nav {
+  background-color: var(--dark-grey);
+}
+
+nav > ul {
+  list-style: none;
+  padding: -0;
+  transform-origin: top;
+  margin: 0;
+}
+
+nav a {
+  padding: 0.1rem 0.5rem 0 0.5rem;
+  font-size: 1.1rem;
+  color: var(--light);
+  display: block;
+}
+
+nav li {
+  padding: 0.65rem 0 0 0;
+  border-bottom: 1px solid var(--accent-grey);
+}
+
+nav button {
+  display: block;
+  width: 95%;
+  background: linear-gradient(to bottom, var(--accent-blue), var(--secondary-blue));
+  border: none;
+  font-size: 1.4rem;
+  margin: 0.5rem auto;
+}
+
+nav button:hover {
+  cursor: pointer;
+}
+
+nav button:active {
+  background-color: var(--accent-blue);
+}
+
+nav a.active {
+  background: linear-gradient(to bottom, var(--accent-blue), var(--secondary-blue));
+  color: var(--dark);
+}
+
+footer {
+  background-color: var(--dark);
+  color: var(--light);
+  border-top: 1px solid var(--dark-grey);
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+main {
+  flex: 1;
+}
+
+nav > ul.hidden {
+  display: none;
+}
+
+nav > ul.visible {
+  animation: growDown 400ms;
+}
+
+@keyframes growDown {
+  0% {
+    display: block;
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* MEDIUM SCREENS */
+@media screen and (min-width: 568px) {
+  nav {
+    padding: 0;
+  }
+
+  nav button {
+    display: none;
+  }
+
+  nav ul, nav ul.hidden, nav ul.visible {
+    display: flex;
+    margin: 0;
+  }
+
+  nav li {
+    padding: 0;
+    border: none;
+  }
+
+  nav a {
+    font-size: 1.25rem;
+    padding: 0.75rem 1rem;
+  }
+
+  nav a.active {
+    border-bottom: 0.25rem solid var(--accent-blue);
+  }
+}
+
+/* LARGE SCREENS */
+@media screen and (min-width: 1440px) {
+  body {
+    margin: 0 auto;
+    border-left: 0.25rem solid var(--secondary-blue);
+    border-right: 0.25rem solid var(--secondary-blue);
+  }
+}
