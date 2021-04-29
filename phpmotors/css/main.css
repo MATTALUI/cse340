@@ -86,10 +86,12 @@ nav li {
 nav button {
   display: block;
   width: 95%;
-  background: linear-gradient(to bottom, var(--accent-blue), var(--secondary-blue));
+  /* background: linear-gradient(to bottom, var(--accent-blue), var(--secondary-blue)); */
+  background-color: var(--secondary-blue);
   border: none;
   font-size: 1.4rem;
   margin: 0.5rem auto;
+  border-radius: 0.125rem;
 }
 
 nav button:hover {
@@ -101,14 +103,15 @@ nav button:active {
 }
 
 nav a.active {
-  background: linear-gradient(to bottom, var(--accent-blue), var(--secondary-blue));
+  /* background: linear-gradient(to bottom, var(--accent-blue), var(--secondary-blue)); */
+  background-color: var(--secondary-blue);
   color: var(--dark);
 }
 
 footer {
   background-color: var(--dark);
   color: var(--light);
-  border-top: 1px solid var(--dark-grey);
+  border-top: 0.125rem solid var(--secondary-blue);
   flex-direction: column;
   align-items: center;
   font-size: 0.75rem;
@@ -116,6 +119,7 @@ footer {
 }
 
 main {
+  display: grid;
   flex: 1;
 }
 
