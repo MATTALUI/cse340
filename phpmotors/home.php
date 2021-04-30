@@ -16,7 +16,7 @@
       <h1>Welcome to PHP Motors!</h1>
       <div id="featured">
         <div id="featured-description">
-          <span>DMV Delorean</span>
+          <span>DMC Delorean</span>
           <span>3 cup holders</span>
           <span>Superman doors</span>
           <span>Fuzzy dice!</span>
