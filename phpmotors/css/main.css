@@ -38,6 +38,13 @@ img {
   max-width: 100%;
 }
 
+button {
+  background-color: var(--secondary-blue);
+  border: 0.125rem solid var(--dark);
+  color: var(--dark);
+  padding: 0.5rem 1rem;
+}
+
 header, main {
   background-color: var(--light);
 }
@@ -86,12 +93,12 @@ nav li {
 nav button {
   display: block;
   width: 95%;
-  /* background: linear-gradient(to bottom, var(--accent-blue), var(--secondary-blue)); */
   background-color: var(--secondary-blue);
   border: none;
   font-size: 1.4rem;
   margin: 0.5rem auto;
   border-radius: 0.125rem;
+  cursor: pointer;
 }
 
 nav button:hover {
@@ -129,6 +136,23 @@ nav > ul.hidden {
 
 nav > ul.visible {
   animation: growDown 400ms;
+}
+
+fieldset > input {
+  display: block;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  border: 1px solid var(--dark);
+}
+
+label.required::before {
+  content: '*';
+  font-size: 0.75rem;
+}
+
+form::before {
+  content: '* - required field';
+  font-size: 0.75rem;
 }
 
 @keyframes growDown {

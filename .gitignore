@@ -1,3 +1,6 @@
 dashboard
+demos
+zips
 *.zip
 *.mov
+.DS_store

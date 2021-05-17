@@ -2,20 +2,27 @@
   <button class="navbar-toggler">&#9776;</button>
   <ul class="hidden" aria-hidden="true">
     <?php
-      $req_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+      function buildLink($link, $path=''){
+        $req_path = $_SERVER['REQUEST_URI'];
+        $navlink  = '<li><a href="'.$path.'" ';
+        $navlink .= strcmp($path, $req_path) === 0 ? 'class="active">': '>';
+        $navlink .= $link;
+        $navlink .= '</a></li>';
+
+        return $navlink;
+      }
+
       $links = [
-        'Home' => '/phpmotors/home.php',
-        'Classics' => '#',
-        'Sports' => '#',
-        'SUV' => '#',
-        'Trucks' => '#',
-        'Used' => '#',
+        'Home' => '/phpmotors/index.php',
       ];
       foreach ($links as $link => $path) {
-        echo '<li><a href="'.$path.'" ';
-        echo strcmp($path, $req_path) === 0 ? 'class="active">': '>';
-        echo $link;
-        echo '</a></li>';
+        echo buildLink($link, $path);
+      }
+      // TODO: ignore if not defined
+      if (isset($classifications)) {
+        foreach ($classifications as $classification) {
+          echo buildLink($classification['classificationName'], '/phpmotors/index.php?action='.urlencode($classification['classificationName']));
+        }
       }
     ?>
   </ul>

@@ -4,5 +4,5 @@
       <img src="/phpmotors/images/site/logo.png" alt="php motors logo">
     </a>
   </div>
-  <a href="#">My Account</a>
+  <a href="/phpmotors/accounts/index.php?action=Login">My Account</a>
 </header>
