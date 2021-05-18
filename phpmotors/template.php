@@ -14,6 +14,11 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/nav.php'; ?>
     <main>
       <h1>MAIN CONTENT HERE</h1>
+      <?php
+        if (isset($message)) {
+          echo $message;
+        }
+      ?>
     </main>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; ?>
   </body>

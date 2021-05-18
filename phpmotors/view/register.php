@@ -14,23 +14,29 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/nav.php'; ?>
     <main>
       <h1>REGISTER</h1>
-      <form action="/accounts?" method="POST">
+      <?php
+        if (isset($message)) {
+          echo $message;
+        }
+      ?>
+      <form action="/phpmotors/accounts/index.php" method="POST">
+        <input type="hidden" name="action" value="Create">
         <fieldset>
           <legend>Account Information</legend>
           <label for="email">Email</label>
-          <input id="email" name="client[clientEmail]" type="text" required/>
+          <input id="email" name="clientEmail" type="text" required/>
           <label for="password">Password</label>
-          <input id="password" name="client[clientPassword]" type="password" required/>
+          <input id="password" name="clientPassword" type="password" required/>
           <label for="confirm-password">Confirm Password</label>
           <input id="confirm-password" name="confirm-password" type="password" required/>
         </fieldset>
         <fieldset>
           <legend>Personal Information</legend>
           <label for="firstname">First Name</label>
-          <input id="firstname" name="client[clientFirstname]" type="text" required/>
+          <input id="firstname" name="clientFirstname" type="text" required/>
           <label for="lastname">Last Name</label>
-          <input id="lastname" name="client[clientLastname]" type="text" required/>
-          <button>Register</button>
+          <input id="lastname" name="clientLastname" type="text" required/>
+          <input type="submit" value="Register">
         </fieldset>
       </form> 
     </main>

@@ -1,7 +1,7 @@
 <!-- ROOT CONTROLLER -->
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/connections.php';
-	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/main-model.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 
 	$action = filter_input(INPUT_POST, 'action');
 	if ($action == NULL){

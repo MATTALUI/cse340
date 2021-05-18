@@ -14,6 +14,11 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/nav.php'; ?>
     <main>
       <h1>LOGIN</h1>
+      <?php
+        if (isset($message)) {
+          echo $message;
+        }
+      ?>
       <form action="/accounts?" method="POST">
         <fieldset>
           <legend>Login</legend>

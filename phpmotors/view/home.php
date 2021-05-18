@@ -14,6 +14,11 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/nav.php'; ?>
     <main>
       <h1>Welcome to PHP Motors!</h1>
+      <?php
+        if (isset($message)) {
+          echo $message;
+        }
+      ?>
       <div id="featured">
         <div id="featured-description">
           <span>DMC Delorean</span>
