@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="/phpmotors/css/main.css" media="screen">
-    <link rel="stylesheet" href="/phpmotors/css/home.css" media="screen">
-    <link rel="icon" href="/phpmotors/images/site/logo.png">
-    <script src="/phpmotors/js/main.js" defer></script>
+    <link rel="stylesheet" href="/phpmotors/assets/css/main.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/assets/css/home.css" media="screen">
+    <link rel="icon" href="/phpmotors/assets/images/site/logo.png">
+    <script src="/phpmotors/assets/js/main.js" defer></script>
     <title>PHP Motors | Home</title>
   </head>
   <body>
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php'; ?>
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/nav.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/header.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/nav.php'; ?>
     <main>
       <h1>Welcome to PHP Motors!</h1>
       <?php
@@ -26,7 +26,7 @@
           <span>Superman doors</span>
           <span>Fuzzy dice!</span>
         </div>
-        <img src="/phpmotors/images/delorean.jpg" alt="The delorean car">
+        <img src="/phpmotors/assets/images/delorean.jpg" alt="The delorean car">
         <button>Own Today</button>
       </div>
       <div id="reviews">
@@ -58,12 +58,12 @@
           $thang = "cats";
           foreach ($upgrades as $upgrade) {
             echo "<a href=\"#\"><div>";
-            echo "<img src=\"/phpmotors/images/upgrades/$upgrade[img]\" alt=\"$upgrade[name] display\">";
+            echo "<img src=\"/phpmotors/assets/images/upgrades/$upgrade[img]\" alt=\"$upgrade[name] display\">";
             echo "</div>$upgrade[name]</a>";
           }
         ?>
       </div>
     </main>
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/footer.php'; ?>
   </body>
 </html>

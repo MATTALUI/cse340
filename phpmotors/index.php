@@ -14,6 +14,6 @@
 		case 'cats': # Just a nonsense case to fill for future work
 			break;
 		default:
-			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/view/home.php';
+			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/home.php';
 	 }
 ?>
