@@ -13,8 +13,16 @@
     .forEach(ele => 
       document.querySelector(`label[for="${ele.getAttribute('id')}"]`).classList.add('required')
     );
+
+  // Helper to make the labels for file inputs act as buttons
+  const useFileInputButtonLabels = () => document
+    .querySelectorAll('input[type="file"]')
+    .forEach(ele => 
+      document.querySelector(`label[for="${ele.getAttribute('id')}"]`).classList.add('button')
+    );
   
 
   document.querySelector('nav button').addEventListener('click', toggleNavigation);
   setRequiredFieldLabels();
+  useFileInputButtonLabels();
 })();

@@ -38,7 +38,19 @@ img {
   max-width: 100%;
 }
 
-button, input[type="submit"] {
+select {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid black;
+  margin-bottom: 0.5rem;
+}
+
+button, input[type="submit"], .button {
   background-color: var(--secondary-blue);
   border: 0.125rem solid var(--dark);
   color: var(--dark);
@@ -46,8 +58,19 @@ button, input[type="submit"] {
   width: auto;
 }
 
-button:hover, input[type="submit"]:hover {
+button:hover, input[type="submit"]:hover, .button:hover {
   cursor: pointer;
+}
+
+form .button {
+  clear: both;
+  display: block;
+  width: auto;
+  margin-bottom: 0.5rem;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 header, main {

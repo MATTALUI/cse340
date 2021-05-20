@@ -4,3 +4,4 @@ zips
 *.zip
 *.mov
 .DS_store
+/phpmotors/assets/images/vehicles/*
