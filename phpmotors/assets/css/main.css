@@ -22,7 +22,7 @@ body::before {
   bottom: 0;
   left: 0;
   z-index: -1;
-  background-image: url('/phpmotors/images/site/checkerboard.jpg');
+  background-image: url('/phpmotors/assets/images/site/checkerboard.jpg');
   opacity: 0.75;
 }
 

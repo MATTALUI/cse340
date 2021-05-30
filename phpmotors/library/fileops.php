@@ -1,5 +1,8 @@
 <?php
   function addInventoryImages($vehicleId, $invImage){
+    // @TODO: error handling
+    // @TODO: validate based on file extension
+    // @TODO: create thumbnail from original
     $dir_path = $_SERVER['DOCUMENT_ROOT'].'/phpmotors/assets/images/vehicles/'.$vehicleId;
     $name = $invImage['name'];
     $img_path = $dir_path.'/'.$name;
