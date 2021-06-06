@@ -15,13 +15,13 @@
 
 	switch ($action){
 		case 'Create':
-			$invMake = filter_input(INPUT_POST, 'invMake');
-			$invModel = filter_input(INPUT_POST, 'invModel');
-			$classificationId = filter_input(INPUT_POST, 'classificationId');
-			$invDescription = filter_input(INPUT_POST, 'invDescription');
-			$invPrice = filter_input(INPUT_POST, 'invPrice');
-			$invStock = filter_input(INPUT_POST, 'invStock');
-			$invColor = filter_input(INPUT_POST, 'invColor');
+			$invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+			$invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+			$classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
+			$invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING));
+			$invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+			$invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);
+			$invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING));
 
 			if (
 				empty($invMake) ||

@@ -11,4 +11,20 @@
     $pattern = '/^(?=.*[[:digit:]])(?=.*[[:punct:]])(?=.*[A-Z])(?=.*[a-z])([^\s]){8,}$/';
     return preg_match($pattern, $clientPassword);
   }
+
+  function buildNavLink($link, $path=''){
+    $req_path = $_SERVER['REQUEST_URI'];
+    $navlink  = '<li><a href="'.$path.'" ';
+    $navlink .= strcmp($path, $req_path) === 0 ? 'class="active">': '>';
+    $navlink .= $link;
+    $navlink .= '</a></li>';
+
+    return $navlink;
+  }
+
+  function buildClassificationNav($classifications){
+    foreach ($classifications as $classification) {
+      echo buildNavLink($classification['classificationName'], '/phpmotors/index.php?action='.urlencode($classification['classificationName']));
+    }
+  }
 ?>

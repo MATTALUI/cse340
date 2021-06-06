@@ -13,7 +13,8 @@
 
 	switch ($action){
 		case 'Create':
-			$classificationName = filter_input(INPUT_POST, 'classificationName');
+			$classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING));
+
 			if(empty($classificationName)){
 				$message = '<p class="message-error">Please provide classification name.</p>';
 				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/classifications/new.php';

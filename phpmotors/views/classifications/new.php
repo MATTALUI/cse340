@@ -19,7 +19,13 @@
         <fieldset>
           <legend>Classification</legend>
           <label for="name">Name</label>
-          <input id="name" name="classificationName" type="text" required/>
+          <input
+            id="name"
+            name="classificationName"
+            type="text"
+            <?php if(isset($classificationName)){echo "value='$classificationName'";}  ?>
+            required
+          />
           <input type="submit" value="Register">
         </fieldset>
       </form>
