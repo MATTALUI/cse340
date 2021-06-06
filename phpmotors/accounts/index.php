@@ -1,6 +1,7 @@
 <!-- ACCOUNTS CONTROLLER -->
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/connections.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/utils.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/accounts-model.php';
 
@@ -18,14 +19,30 @@
 		case 'Register':
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/register.php';
 			break;
-		case 'Create':
-			$clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
-			$clientLastname = filter_input(INPUT_POST, 'clientLastname');
-			$clientEmail = filter_input(INPUT_POST, 'clientEmail');
-			$clientPassword = filter_input(INPUT_POST, 'clientPassword');
-			$confirmPassword = filter_input(INPUT_POST, 'confirm-password');
+		case 'Authenticate':
+				$clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+				$clientEmail = checkEmail($clientEmail);
+				$clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
+				$checkPassword = checkPassword($clientPassword);
 
-			if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){
+				if(empty($clientEmail) || empty($checkPassword)){
+					$message = '<p class="message-error">Please email and password.</p>';
+					include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/login.php';
+					exit;
+				}
+				echo "success";
+
+			break;
+		case 'Create':
+			$clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
+			$clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING));
+			$clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+			$clientEmail = checkEmail($clientEmail);
+			$clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
+			$checkPassword = checkPassword($clientPassword);
+			$confirmPassword = trim(filter_input(INPUT_POST, 'confirm-password', FILTER_SANITIZE_STRING));
+
+			if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
 				$message = '<p class="message-error">Please provide information for all empty form fields.</p>';
 				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/register.php';
 				exit;
