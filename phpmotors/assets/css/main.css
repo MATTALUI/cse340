@@ -201,6 +201,12 @@ p[class^="message"] {
   border-color: green;
 }
 
+.message-info {
+  color: blue;
+  background-color: #CCF;
+  border-color: blue;
+}
+
 @keyframes growDown {
   0% {
     display: block;

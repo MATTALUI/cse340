@@ -54,6 +54,13 @@
 				exit;
 			}
 
+			// Check for existing email address in the table
+			if (checkExistingEmail($clientEmail)) {
+				$message = '<p class="message-info">That email address already exists. Do you want to login instead?</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/login.php';
+				exit;
+			}
+
 			$hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
 			$regOutcome = registerClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
 			if($regOutcome === 1){

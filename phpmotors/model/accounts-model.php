@@ -21,4 +21,16 @@
     return $rowsChanged;
   }
 
+  // Check for an existing email address
+function checkExistingEmail($clientEmail) {
+  $db =  phpmotorsConnect();
+  $sql = 'SELECT clientEmail FROM clients WHERE clientEmail = :email';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':email', $clientEmail, PDO::PARAM_STR);
+  $stmt->execute();
+  $matchEmail = $stmt->fetch(PDO::FETCH_NUM);
+  $stmt->closeCursor();
+  
+  return !empty($matchEmail);
+ }
 ?>
