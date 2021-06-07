@@ -1,6 +1,6 @@
 <!-- CLASSIFICATIONS CONTROLLER -->
 <?php
-	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/connections.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/common.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/accounts-model.php';
 

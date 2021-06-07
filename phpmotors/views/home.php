@@ -9,7 +9,15 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/header.php'; ?>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/nav.php'; ?>
     <main>
-      <h1>Welcome to PHP Motors!</h1>
+      <h1>
+        <?php
+          echo 'Welcome to PHP Motors';
+          if (isset($cookieFirstname)){
+            echo ', '.$cookieFirstname;
+           }
+          echo '!';
+        ?>
+      </h1>
       <?php
         if (isset($message)) {
           echo $message;

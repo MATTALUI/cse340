@@ -1,6 +1,6 @@
 <!-- ACCOUNTS CONTROLLER -->
 <?php
-	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/connections.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/common.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/utils.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/accounts-model.php';
@@ -64,6 +64,7 @@
 			$hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
 			$regOutcome = registerClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
 			if($regOutcome === 1){
+				setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
 				$message = '<p class="message-success">Thanks for registering, '.$clientFirstname.'. Please use your email and password to login.</p>';
 				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/login.php';
 				exit;
