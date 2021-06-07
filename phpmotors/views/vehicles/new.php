@@ -9,11 +9,7 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/nav.php'; ?>
     <main>
       <h1>New Vehicle</h1>
-      <?php
-        if (isset($message)) {
-          echo $message;
-        }
-      ?>
+      <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
       <form action="/phpmotors/vehicles/index.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="Create">
         <fieldset>

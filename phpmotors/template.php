@@ -9,11 +9,7 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/nav.php'; ?>
     <main>
       <h1>MAIN CONTENT HERE</h1>
-      <?php
-        if (isset($message)) {
-          echo $message;
-        }
-      ?>
+      <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
     </main>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/footer.php'; ?>
   </body>

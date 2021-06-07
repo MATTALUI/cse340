@@ -30,8 +30,20 @@
 					include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/login.php';
 					exit;
 				}
-				echo "success";
 
+				$clientData = getClient($clientEmail);
+				$hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+				
+				if(!$hashCheck) {
+					$message = '<p class="message-error">Please check your email and password and try again.</p>';
+					include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/login.php';
+					exit;
+				}
+
+				$_SESSION['loggedin'] = TRUE;
+				array_pop($clientData); // Remove the password from the array
+				$_SESSION['clientData'] = $clientData;
+				header('Location: /phpmotors');
 			break;
 		case 'Create':
 			$clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
@@ -65,8 +77,8 @@
 			$regOutcome = registerClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
 			if($regOutcome === 1){
 				setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
-				$message = '<p class="message-success">Thanks for registering, '.$clientFirstname.'. Please use your email and password to login.</p>';
-				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/login.php';
+				$_SESSION['message'] = '<p class="message-success">Thanks for registering, '.$clientFirstname.'. Please use your email and password to login.</p>';
+				header('Location: /phpmotors/accounts/?action=Login');
 				exit;
 			} else {
 				$message = '<p class="message-error">Sorry, '.$clientFirstname.', but the registration failed. Please try again.</p>';
@@ -75,13 +87,7 @@
 			}
 			break;
 		default:
-			if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
-				$uri = 'https://';
-			} else {
-				$uri = 'http://';
-			}
-			$uri .= $_SERVER['HTTP_HOST'];
-			header('Location: '.$uri.'/phpmotors/index.php');
+			goToRoot();
 			exit;
 	}
 ?>

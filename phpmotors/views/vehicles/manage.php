@@ -9,11 +9,7 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/nav.php'; ?>
     <main>
       <h1>Vehicle Management</h1>
-      <?php
-        if (isset($message)) {
-          echo $message;
-        }
-      ?>
+      <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
       <ul>
         <li>
           <a href="/phpmotors/classifications/index.php?action=New">Add Classification</a>

@@ -9,11 +9,7 @@
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/nav.php'; ?>
     <main>
       <h1>LOGIN</h1>
-      <?php
-        if (isset($message)) {
-          echo $message;
-        }
-      ?>
+      <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
       <form action="/phpmotors/accounts/index.php" method="POST" novalidate>
         <input type="hidden" name="action" value="Authenticate">
         <fieldset>
