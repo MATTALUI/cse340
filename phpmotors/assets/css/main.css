@@ -207,6 +207,10 @@ p[class^="message"] {
   border-color: blue;
 }
 
+.horsep {
+  margin: 0 0.5rem;
+}
+
 @keyframes growDown {
   0% {
     display: block;

@@ -10,7 +10,7 @@
 	}
 
 	$classifications = getClassifications();
-
+	requirePrivledge();
 	switch ($action){
 		case 'Create':
 			$classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING));

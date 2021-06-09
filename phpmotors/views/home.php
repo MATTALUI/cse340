@@ -12,17 +12,13 @@
       <h1>
         <?php
           echo 'Welcome to PHP Motors';
-          if (isset($cookieFirstname)){
-            echo ', '.$cookieFirstname;
+          if (isset($userFirstname)){
+            echo ', '.$userFirstname;
            }
           echo '!';
         ?>
       </h1>
-      <?php
-        if (isset($message)) {
-          echo $message;
-        }
-      ?>
+      <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
       <div id="featured">
         <div id="featured-description">
           <span>DMC Delorean</span>

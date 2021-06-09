@@ -12,7 +12,7 @@
 	}
 
 	$classifications = getClassifications();
-
+	requirePrivledge();
 	switch ($action){
 		case 'Create':
 			$invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
