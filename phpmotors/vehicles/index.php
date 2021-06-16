@@ -61,9 +61,28 @@
 			exit;
 		case 'ajaxGetInventoryItems': 
 			$classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT); 
-			$inventoryArray = getInventoryByClassification($classificationId);
-			echo json_encode($inventoryArray);
+			$inventory = getInventoryByClassification($classificationId);
+			echo json_encode($inventory);
 			break;
+		case 'Edit':
+			$invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+			$invInfo = getInvItemInfo($invId);
+			if(!$invInfo) {
+				$message = '<p class="message-error">Sorry, no vehicle information could be found.</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/manage.php';
+				exit;
+			}
+
+			$invMake = $invInfo['invMake'];
+			$invModel = $invInfo['invModel'];
+			$classificationId = $invInfo['classificationId'];
+			$invDescription = $invInfo['invDescription'];
+			$invPrice = $invInfo['invPrice'];
+			$invStock = $invInfo['invStock'];
+			$invColor = $invInfo['invColor'];
+
+			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/edit.php';
+			exit;
 		case 'New':
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/new.php';
 			exit;

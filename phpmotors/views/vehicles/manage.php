@@ -11,6 +11,15 @@
     <main>
       <h1>Vehicle Management</h1>
       <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
+      <h2>Manage</h2>
+      <ul>
+        <li>
+          <a href="/phpmotors/classifications/index.php?action=New">Add Classification</a>
+        </li>
+        <li>
+          <a href="/phpmotors/vehicles/index.php?action=New">Add Vehicle</a>
+        </li>
+      </ul>
       <h2>Vehicles By Classification</h2>
       <p>Choose a classification to see those vehicles</p>
       <?php buildClassificationSelect($classifications); ?>
@@ -20,14 +29,6 @@
         </p>
       </noscript>
       <table id="inventoryDisplay"></table>
-      <ul>
-        <li>
-          <a href="/phpmotors/classifications/index.php?action=New">Add Classification</a>
-        </li>
-        <li>
-          <a href="/phpmotors/vehicles/index.php?action=New">Add Vehicle</a>
-        </li>
-      </ul>
     </main>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/footer.php'; ?>
   </body>
