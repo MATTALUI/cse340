@@ -1,5 +1,5 @@
-<!-- VEHICLES CONTROLLER -->
 <?php
+	//// VEHICLES CONTROLLER ////
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/common.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/vehicles-model.php';
@@ -59,6 +59,11 @@
 
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/manage.php';
 			exit;
+		case 'ajaxGetInventoryItems': 
+			$classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT); 
+			$inventoryArray = getInventoryByClassification($classificationId);
+			echo json_encode($inventoryArray);
+			break;
 		case 'New':
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/new.php';
 			exit;

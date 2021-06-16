@@ -28,6 +28,22 @@
     }
   }
 
+  function buildClassificationSelect($classifications) {
+    echo '<select id="classification" name="classificationId">';
+    if (isset($classifications)) {
+      foreach ($classifications as $classification) {
+        echo '<option value="'.$classification['classificationId'].'" ';
+        if(isset($classificationId) && $classificationId == $classification['classificationId']){
+          echo " selected ";
+        }
+        echo ' >';
+        echo $classification['classificationName'];
+        echo'</option>';
+      }
+    }
+    echo '</select>';
+  }
+
   function goToRoot() {
     if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
       $uri = 'https://';

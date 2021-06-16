@@ -211,6 +211,23 @@ p[class^="message"] {
   margin: 0 0.5rem;
 }
 
+table {
+  width: 100%;
+  border: 1px black;
+}
+
+thead {
+  background-color: var(--secondary-blue);
+}
+
+td, th {
+  padding: 0.25rem 0.5rem;
+}
+
+tr:nth-child(even) {
+  background-color: var(--accent-grey);
+}
+
 @keyframes growDown {
   0% {
     display: block;

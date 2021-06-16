@@ -31,21 +31,7 @@
             required
           />
           <label for="classification">Classification</label>
-          <select id="classification" name="classificationId">
-            <?php
-              if (isset($classifications)) {
-                foreach ($classifications as $classification) {
-                  echo '<option value="'.$classification['classificationId'].'" ';
-                  if(isset($classificationId) && $classificationId == $classification['classificationId']){
-                    echo " selected ";
-                  }
-                  echo ' >';
-                  echo $classification['classificationName'];
-                  echo'</option>';
-                }
-              }
-            ?>
-          </select>
+          <?php buildClassificationSelect($classifications); ?>
           <label for="image">Upload Image</label>
           <input id="image" name="invImage" type="file" />
           <label for="description">Description</label>

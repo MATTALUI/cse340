@@ -1,4 +1,10 @@
 (() => {
+  const addSafeListener = (selector, event, handler) => {
+    if (document.querySelector(selector)) {
+      document.querySelector(selector).addEventListener(event, handler);
+    }
+  }
+
   const toggleNavigation = () => {
     const navList = document.querySelector('nav ul');
     const hidden = navList.getAttribute('aria-hidden') === 'true';
@@ -30,8 +36,8 @@
   }
   
 
-  document.querySelector('nav button').addEventListener('click', toggleNavigation);
-  document.querySelector('input[type="file"]').addEventListener('change', manageFileInputLabels);
+  addSafeListener('nav button', 'click', toggleNavigation);
+  addSafeListener('input[type="file"]', 'change', manageFileInputLabels);
   setRequiredFieldLabels();
   useFileInputButtonLabels();
 })();
