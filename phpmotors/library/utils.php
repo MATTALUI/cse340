@@ -28,7 +28,7 @@
     }
   }
 
-  function buildClassificationSelect($classifications) {
+  function buildClassificationSelect($classifications, $classificationId=NULL) {
     echo '<select id="classification" name="classificationId">';
     if (isset($classifications)) {
       foreach ($classifications as $classification) {
@@ -52,5 +52,14 @@
     }
     $uri .= $_SERVER['HTTP_HOST'];
     header('Location: '.$uri.'/phpmotors/index.php');
+  }
+
+  function safeImagePath($path) {
+    global $DEFAULT_INVENTORY_IMAGE_PATH;
+    if (file_exists($_SERVER['DOCUMENT_ROOT'].$path)) {
+      return $path;
+    } else {
+      return '/phpmotors/'.$DEFAULT_INVENTORY_IMAGE_PATH;
+    }
   }
 ?>

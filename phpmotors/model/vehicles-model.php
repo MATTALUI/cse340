@@ -79,4 +79,41 @@
     $stmt->execute();
     $stmt->closeCursor();
   }
+
+  function updateVehicle(
+    $invId,
+    $invMake,
+    $invModel,
+    $classificationId,
+    $invDescription,
+    $invPrice,
+    $invStock,
+    $invColor
+  ) {
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE inventory
+      SET invMake = :invMake,
+        invModel = :invModel,
+        classificationId = :classificationId,
+        invDescription = :invDescription,
+        invPrice = :invPrice,
+        invStock = :invStock,
+        invColor = :invColor
+    WHERE invId = :invId'; 
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
+    $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
+    $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_INT);
+    $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
+    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
+    $stmt->bindValue(':invStock', $invStock, PDO::PARAM_STR);
+    $stmt->bindValue(':invColor', $invColor, PDO::PARAM_STR);
+
+    $stmt->execute();
+    $stmt->closeCursor();
+
+    return $stmt->rowCount();
+  }
 ?>

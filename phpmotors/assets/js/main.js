@@ -1,8 +1,7 @@
 (() => {
   const addSafeListener = (selector, event, handler) => {
-    if (document.querySelector(selector)) {
-      document.querySelector(selector).addEventListener(event, handler);
-    }
+    const eles = document.querySelectorAll(selector);
+    eles.forEach(ele => ele.addEventListener(event, handler));
   }
 
   const toggleNavigation = () => {
@@ -34,6 +33,9 @@
     const label = document.querySelector(`label[for="${event.target.getAttribute('id')}"]`);
     label.innerHTML = name;
   }
+
+  // Helper to replace broken images with default image
+  const replaceBrokenImage = event => event.target.src = '/phpmotors/assets/images/no-image.png';
   
 
   addSafeListener('nav button', 'click', toggleNavigation);

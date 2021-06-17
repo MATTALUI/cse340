@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/shared_head.php'; ?>
+    <script src="/phpmotors/assets/js/vehicles-form.js" defer></script>
     <title>
       PHP Motors |
       <?php
@@ -29,6 +30,11 @@
       <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
       <form action="/phpmotors/vehicles/index.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="Update">
+        <input
+          type="hidden"
+          name="invId"
+          <?php echo 'value="'.$invId.'"'; ?>
+        />
         <fieldset>
           <legend>Vehicle</legend>
           <label for="make">Make</label>
@@ -48,7 +54,10 @@
             required
           />
           <label for="classification">Classification</label>
-          <?php buildClassificationSelect($classifications); ?>
+          <?php buildClassificationSelect($classifications, $classificationId); ?>
+          <div id="inventoryPreview" class="image-preview">
+            <img src="<?php echo safeImagePath($invImage); ?>" alt="vehicle preview"/>
+          </div>
           <label for="image">Upload New Image</label>
           <input id="image" name="invImage" type="file" />
           <label for="description">Description</label>

@@ -228,6 +228,12 @@ tr:nth-child(even) {
   background-color: var(--accent-grey);
 }
 
+.image-preview {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
 @keyframes growDown {
   0% {
     display: block;
@@ -267,6 +273,11 @@ tr:nth-child(even) {
   nav a.active {
     border-bottom: 0.25rem solid var(--accent-blue);
   }
+
+  .image-preview > img {
+    max-width: 75%;
+    padding: 0.5rem;
+  }
 }
 
 /* LARGE SCREENS */
@@ -275,5 +286,9 @@ tr:nth-child(even) {
     margin: 0 auto;
     border-left: 0.25rem solid var(--secondary-blue);
     border-right: 0.25rem solid var(--secondary-blue);
+  }
+
+  .image-preview > img {
+    max-width: 50%;
   }
 }

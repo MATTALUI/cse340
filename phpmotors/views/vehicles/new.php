@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/shared_head.php'; ?>
+    <script src="/phpmotors/assets/js/vehicles-form.js" defer></script>
     <title>PHP Motors | New vehicle</title>
   </head>
   <body>
@@ -31,7 +32,8 @@
             required
           />
           <label for="classification">Classification</label>
-          <?php buildClassificationSelect($classifications); ?>
+          <?php buildClassificationSelect($classifications, $classificationId); ?>
+          <div id="inventoryPreview" class="image-preview"></div>
           <label for="image">Upload Image</label>
           <input id="image" name="invImage" type="file" />
           <label for="description">Description</label>

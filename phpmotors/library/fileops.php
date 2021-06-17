@@ -12,8 +12,8 @@
     copy($invImage['tmp_name'], $img_path);
     
     return Array(
-      'invImage' => '/assets/images/vehicles/'.$vehicleId.'/'.$name,
-      'invThumbnail' => '/assets/images/vehicles/'.$vehicleId.'/'.$name,
+      'invImage' => '/phpmotors/assets/images/vehicles/'.$vehicleId.'/'.$name,
+      'invThumbnail' => '/phpmotors/assets/images/vehicles/'.$vehicleId.'/'.$name,
     );
   }
 ?>
