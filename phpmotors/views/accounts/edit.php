@@ -12,7 +12,7 @@
       <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
       <section>
         <h2>Update Account Information</h2>
-        <form>
+        <form action="/phpmotors/accounts/index.php" method="POST">
           <input type="hidden" name="action" value="Update" />
           <fieldset>
             <legend>Account Information</legend>
@@ -46,7 +46,7 @@
       </section>
       <section>
         <h2>Update Account Password</h2>
-        <form>
+        <form action="/phpmotors/accounts/index.php" method="POST">
           <input type="hidden" name="action" value="UpdatePassword" />
           <fieldset>
             <legend>Password Information</legend>

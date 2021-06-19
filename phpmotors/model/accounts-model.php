@@ -45,4 +45,28 @@
     $stmt->closeCursor();
     return $clientData;
   }
+
+  function updateClient($clientId, $clientEmail, $clientFirstname, $clientLastname){
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE clients
+      SET clientEmail = :clientEmail,
+          clientFirstname = :clientFirstname,
+          clientLastname = :clientLastname
+    WHERE clientId = :clientId'; 
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
+
+    $stmt->execute();
+    $stmt->closeCursor();
+
+    return $stmt->rowCount();
+  }
+
+  function updateClientPassword(){
+    
+  }
 ?>

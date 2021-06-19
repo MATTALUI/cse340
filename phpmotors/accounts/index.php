@@ -14,7 +14,38 @@
 
 	switch ($action){
 		case 'Update':
-			echo 'Updating account info';
+			$clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
+			$clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING));
+			$clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+
+			$clientData = $_SESSION['clientData'];
+			$clientId = $clientData['clientId'];
+
+			if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)){
+				$message = '<p class="message-error">Please provide information for all empty form fields.</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
+				exit;
+			}
+
+			if ($clientEmail !== $clientData['clientEmail'] && checkExistingEmail($clientEmail)) {
+				$message = '<p class="message-error">An account with that email already exists; you may not use it.</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
+				exit;
+			}
+
+			$changeCount = updateClient($clientId, $clientEmail, $clientFirstname, $clientLastname);
+
+			if ($changeCount > 0) {
+				$_SESSION['clientData']['clientEmail'] = $clientEmail;
+				$_SESSION['clientData']['clientFirstname'] = $clientFirstname;
+				$_SESSION['clientData']['clientLastname'] = $clientLastname;
+				$_SESSION['message'] = '<p class="message-success">Your account information has been successfully updated.</p>';
+				
+				header('Location: /phpmotors/accounts/index.php?action=Admin');
+			} else {
+
+			}
+
 			break;
 		case 'UpdatePassword':
 			echo 'Updating password info';
@@ -38,7 +69,6 @@
 			$clientLastname = $_SESSION['clientData']['clientLastname'];
 			$clientEmail = $_SESSION['clientData']['clientEmail'];
 
-			require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/user.php';
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
 			break;
 		case 'Authenticate':
