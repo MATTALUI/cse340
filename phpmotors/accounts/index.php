@@ -13,6 +13,12 @@
 	$classifications = getClassifications();
 
 	switch ($action){
+		case 'Update':
+			echo 'Updating account info';
+			break;
+		case 'UpdatePassword':
+			echo 'Updating password info';
+			break;
 		case 'Admin':
 			requireUserData();
 			require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/user.php';
@@ -25,6 +31,15 @@
 		case 'Register':
 			preventUser();
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/register.php';
+			break;
+		case 'Edit':
+			requireUserData();
+			$clientFirstname = $_SESSION['clientData']['clientFirstname'];
+			$clientLastname = $_SESSION['clientData']['clientLastname'];
+			$clientEmail = $_SESSION['clientData']['clientEmail'];
+
+			require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/user.php';
+			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
 			break;
 		case 'Authenticate':
 			preventUser();

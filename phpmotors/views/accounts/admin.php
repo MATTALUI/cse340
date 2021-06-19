@@ -19,6 +19,7 @@
         <li><?php echo 'Email: '.$userData['clientEmail']; ?></li>
       </ul>
       <?php
+        include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/_account_panel.php';
         if (hasPrivledges()) {
           include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/_admin_panel.php';
         }
