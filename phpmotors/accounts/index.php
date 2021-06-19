@@ -40,7 +40,7 @@
 				$_SESSION['clientData']['clientFirstname'] = $clientFirstname;
 				$_SESSION['clientData']['clientLastname'] = $clientLastname;
 				$_SESSION['message'] = '<p class="message-success">Your account information has been successfully updated.</p>';
-				
+
 				header('Location: /phpmotors/accounts/index.php?action=Admin');
 			} else {
 
@@ -48,7 +48,50 @@
 
 			break;
 		case 'UpdatePassword':
-			echo 'Updating password info';
+			$clientId = $_SESSION['clientData']['clientId'];
+			$clientEmail = $_SESSION['clientData']['clientEmail'];
+			$clientFirstname = $_SESSION['clientData']['clientFirstname'];
+			$clientLastname = $_SESSION['clientData']['clientLastname'];
+
+			$clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
+			$newPassword = trim(filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_STRING));
+			$confirmPassword = trim(filter_input(INPUT_POST, 'confirmPassword', FILTER_SANITIZE_STRING));
+
+			if(empty($clientPassword) || empty($newPassword) || empty($confirmPassword)){
+				$message = '<p class="message-error">Please provide information for all empty form fields.</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
+				exit;
+			}
+
+			if ($newPassword !== $confirmPassword) {
+				$message = '<p class="message-error">New passwords do not match.</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
+				exit;
+			}
+
+			$clientData = getClient($clientEmail);
+			$hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+				
+			if (!$hashCheck) {
+				$message = '<p class="message-error">Unable to confirm password.</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
+				exit;
+			}
+
+			$hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+			$updateCount = updateClientPassword($clientId, $hashedPassword);
+
+			if ($updateCount > 0) {
+				$_SESSION['message'] = '<p class="message-success">Your account password successfully updated.</p>';
+
+				header('Location: /phpmotors/accounts/index.php?action=Admin');
+				exit;
+			} else {
+				$message = '<p class="message-error">Sorry. Something went wrong. Please try again later</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
+				exit;
+			}
+
 			break;
 		case 'Admin':
 			requireUserData();

@@ -66,7 +66,17 @@
     return $stmt->rowCount();
   }
 
-  function updateClientPassword(){
-    
+  function updateClientPassword($clientId, $hashedPassword){
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE clients SET clientPassword = :clientPassword WHERE clientId = :clientId'; 
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->bindValue(':clientPassword', $hashedPassword, PDO::PARAM_STR);
+
+    $stmt->execute();
+    $stmt->closeCursor();
+
+    return $stmt->rowCount();
   }
 ?>

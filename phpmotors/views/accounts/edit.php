@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/shared_head.php'; ?>
+    <script src="/phpmotors/assets/js/accounts-form.js" defer></script>
     <title>PHP Motors | Manage Account</title>
   </head>
   <body>
@@ -46,16 +47,16 @@
       </section>
       <section>
         <h2>Update Account Password</h2>
-        <form action="/phpmotors/accounts/index.php" method="POST">
+        <form action="/phpmotors/accounts/index.php" method="POST" novalidate>
           <input type="hidden" name="action" value="UpdatePassword" />
           <fieldset>
             <legend>Password Information</legend>
             <label for="password">Current Password</label>
             <input id="password" name="clientPassword" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
-            <label for="new-password">New Password</label>
-            <input id="new-password" name="new-password" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
-            <label for="confirm-password">Confirm Password</label>
-            <input id="confirm-password" name="confirm-password" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
+            <label for="newPassword">New Password</label>
+            <input id="newPassword" name="newPassword" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
+            <label for="confirmPassword">Confirm Password</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
             <input type="submit" value="Update Password">
           </fieldset>
         </form>
