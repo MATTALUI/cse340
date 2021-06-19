@@ -43,7 +43,8 @@
 
 				header('Location: /phpmotors/accounts/index.php?action=Admin');
 			} else {
-
+				$message = '<p class="message-error">Sorry. Something went wrong. Please try again later.</p>';
+				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
 			}
 
 			break;
@@ -87,7 +88,7 @@
 				header('Location: /phpmotors/accounts/index.php?action=Admin');
 				exit;
 			} else {
-				$message = '<p class="message-error">Sorry. Something went wrong. Please try again later</p>';
+				$message = '<p class="message-error">Sorry. Something went wrong. Please try again later.</p>';
 				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/edit.php';
 				exit;
 			}

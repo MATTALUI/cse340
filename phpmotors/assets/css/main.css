@@ -234,7 +234,7 @@ tr:nth-child(even) {
   padding: 0.5rem 0;
 }
 
-[readonly] {
+*[readonly] {
   background-color: var(--accent-grey);
 }
 

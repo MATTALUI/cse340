@@ -47,7 +47,7 @@
       </section>
       <section>
         <h2>Update Account Password</h2>
-        <form action="/phpmotors/accounts/index.php" method="POST" novalidate>
+        <form action="/phpmotors/accounts/index.php" method="POST">
           <input type="hidden" name="action" value="UpdatePassword" />
           <fieldset>
             <legend>Password Information</legend>
