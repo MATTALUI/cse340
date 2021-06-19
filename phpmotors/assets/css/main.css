@@ -233,6 +233,10 @@ tr:nth-child(even) {
   justify-content: center;
   padding: 0.5rem 0;
 }
+[readonly] {
+  pointer-events: none;
+  background-color: var(--accent-grey);
+}
 
 @keyframes growDown {
   0% {

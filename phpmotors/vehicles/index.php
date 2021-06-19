@@ -49,7 +49,7 @@
 				$DEFAULT_INVENTORY_IMAGE_PATH  # $invThumbnail
 			);
 
-			if ($_FILES['invImage']){
+			if ($_FILES['invImage']['size'] > 0){
 				$imagePaths = addInventoryImages($newVehicleId, $_FILES['invImage']);
 				updateVehicleImages($newVehicleId, $imagePaths['invImage'], $imagePaths['invThumbnail']);
 			}
@@ -109,6 +109,23 @@
 
 			header('location: /phpmotors/vehicles/');
 			exit;
+		case 'Destroy':
+			$invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+			$invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+			$invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+			
+			$deletedVehicle = deleteVehicle($invId);
+			if ($deletedVehicle > 0) {
+				$_SESSION['message'] = "<p class='message-success'>Congratulations the, ".$invMake." ".$invModel." was	successfully deleted.</p>";;
+				
+				header('location: /phpmotors/vehicles/');
+				exit;
+			} else {
+				$_SESSION['message'] = "<p class='message-error'>Error: ".$invMake." ".$invModel." was not deleted.</p>";
+				header('location: /phpmotors/vehicles/');
+				exit;
+			}
+			exit;
 		case 'ajaxGetInventoryItems': 
 			$classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT); 
 			$inventory = getInventoryByClassification($classificationId);
@@ -133,6 +150,23 @@
 			$invColor = $invInfo['invColor'];
 
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/edit.php';
+			exit;
+		case 'Delete':
+			$invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+			$invInfo = getInvItemInfo($invId);
+			if(!$invInfo) {
+				$_SESSION['message'] = '<p class="message-error">Sorry, no vehicle information could be found.</p>';
+				header('location: /phpmotors/vehicles/');
+				exit;
+			}
+
+			$invId = $invInfo['invId'];
+			$invMake = $invInfo['invMake'];
+			$invModel = $invInfo['invModel'];
+			$invDescription = $invInfo['invDescription'];
+			$invImage = $invInfo['invImage'];
+	
+			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/delete.php';
 			exit;
 		case 'New':
 			$classificationId = '';

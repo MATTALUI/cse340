@@ -12,7 +12,7 @@
     inventoryData.forEach(vehicle => { 
       dataTable += `<tr><td>${vehicle.invMake} ${vehicle.invModel}</td>`; 
       dataTable += `<td><a href='/phpmotors/vehicles?action=Edit&invId=${vehicle.invId}' title='Click to modify'>Modify</a></td>`; 
-      dataTable += `<td><a href='/phpmotors/vehicles?action=Destroy&invId=${vehicle.invId}' title='Click to delete'>Delete</a></td></tr>`; 
+      dataTable += `<td><a href='/phpmotors/vehicles?action=Delete&invId=${vehicle.invId}' title='Click to delete'>Delete</a></td></tr>`; 
     });
     dataTable += '</tbody>'; 
     // Display the contents in the Vehicle Management view 

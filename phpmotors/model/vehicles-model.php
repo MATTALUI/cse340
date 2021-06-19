@@ -116,4 +116,17 @@
 
     return $stmt->rowCount();
   }
+
+  function deleteVehicle($invId) {
+    $db = phpmotorsConnect();
+    $sql = 'DELETE FROM inventory WHERE invId = :invId'; 
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+
+    $stmt->execute();
+    $stmt->closeCursor();
+
+    return $stmt->rowCount();
+  }
 ?>
