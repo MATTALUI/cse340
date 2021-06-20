@@ -28,7 +28,28 @@
           <strong>JavaScript Must Be Enabled to Use this Page.</strong>
         </p>
       </noscript>
-      <table id="inventoryDisplay"></table>
+      <table id="inventoryDisplay">
+        <thead>
+          <tr>
+            <th>Vehicle Name</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            if  (isset($inventory)) {
+              foreach ($inventory as $vehicle) {
+                echo '<tr>';
+                echo '<td>'.$vehicle['invMake'].' '.$vehicle['invModel'].'</td>';
+                echo '<td><a href="/phpmotors/vehicles?action=Edit&invId='.$vehicle['invId'].'" title="Click to modify">Modify</a></td>';
+                echo '<td><a href="/phpmotors/vehicles?action=Delete&invId='.$vehicle['invId'].'" title="Click to delete">Delete</a></td>';
+                echo '</tr>';
+              }
+            }
+          ?>
+        </tbody>
+      </table>
     </main>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/footer.php'; ?>
   </body>

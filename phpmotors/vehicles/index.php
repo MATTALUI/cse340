@@ -174,6 +174,8 @@
 			exit;
     case 'Manage':
 		default:
+			$classificationId = $classifications[0]['classificationId'];
+			$inventory = getInventoryByClassification($classificationId);
       include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/manage.php';
 	}
 ?>
