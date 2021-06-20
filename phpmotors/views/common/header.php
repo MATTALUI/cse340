@@ -1,6 +1,6 @@
 <header>
   <div id="logo-container">
-    <a href="/phpmotors">
+    <a href="/phpmotors/index.php">
       <img src="/phpmotors/assets/images/site/logo.png" alt="php motors logo">
     </a>
   </div>

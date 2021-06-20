@@ -1,0 +1,58 @@
+.inventory__card {
+  background-color: var(--secondary-blue);
+  border: 0.25rem solid var(--accent-blue);
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--dark);
+}
+
+.inventory__card-image {
+  border-radius: 1rem 1rem 0 0;
+  height: fit-content;
+}
+
+.inventory__card-image > img {
+  width: 100%;
+  height: 100%;
+}
+
+.inventory__card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: var(--accent-grey);
+  flex: 1;
+}
+
+.inventory__card-info > h2 {
+  margin: 0;
+}
+
+/* MEDIUM SCREENS */
+@media screen and (min-width: 568px) {
+  .inventory__card {
+    flex-direction: row;
+  }
+
+  .inventory__card-image {
+    flex: 1;
+  }
+}
+
+/* LARGE SCREENS */
+@media screen and (min-width: 1440px) {
+  #inventoryCards {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  #inventoryCards > .message-info {
+    grid-column: 1 / 5;
+  }
+}

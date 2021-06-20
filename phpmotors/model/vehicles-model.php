@@ -1,5 +1,17 @@
 <?php
 
+  function getAllInventory() {
+    // @TODO: Paginate to prevent mega queries
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory ORDER BY invMake ASC';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+
+    return $inventory; 
+  }
+
   // Get vehicle information by invId
   function getInvItemInfo($invId){
     $db = phpmotorsConnect();
@@ -128,5 +140,16 @@
     $stmt->closeCursor();
 
     return $stmt->rowCount();
+  }
+
+  function getInventoryByClassification($classificationId){
+    $db = phpmotorsConnect(); 
+    $sql = 'SELECT * FROM inventory WHERE classificationId = :classificationId'; 
+    $stmt = $db->prepare($sql); 
+    $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $inventory; 
   }
 ?>

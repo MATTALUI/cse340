@@ -24,7 +24,7 @@
 
   function buildClassificationNav($classifications){
     foreach ($classifications as $classification) {
-      echo buildNavLink($classification['classificationName'], '/phpmotors/index.php?action='.urlencode($classification['classificationName']));
+      echo buildNavLink($classification['classificationName'], '/phpmotors/vehicles/index.php?action=Index&classificationId='.urlencode($classification['classificationId']));
     }
   }
 
@@ -42,6 +42,33 @@
       }
     }
     echo '</select>';
+  }
+
+  function buildInventoryTableDataRows($inventory) {
+    foreach ($inventory as $vehicle) {
+      echo '<tr>';
+      echo '<td>'.$vehicle['invMake'].' '.$vehicle['invModel'].'</td>';
+      echo '<td><a href="/phpmotors/vehicles?action=Edit&invId='.$vehicle['invId'].'" title="Click to modify">Modify</a></td>';
+      echo '<td><a href="/phpmotors/vehicles?action=Delete&invId='.$vehicle['invId'].'" title="Click to delete">Delete</a></td>';
+      echo '</tr>';
+    }
+  }
+
+  function buildVehiclesDisplay($inventory){
+    echo '<div id="inventoryCards">';
+    if (count($inventory) === 0) {
+      echo '<p class="message-info">No vehicles available.</p>';
+    }
+    foreach ($inventory as $vehicle) {
+     echo '<a class="inventory__card" href="#">';
+     echo '<div class="inventory__card-image"><img src="'.safeImagePath($vehicle['invThumbnail']).'" alt="Image of '.$vehicle['invMake'].' '.$vehicle['invModel'].' on phpmotors.com"></div>';
+     echo '<div class="inventory__card-info">';
+     echo '<h2>'.$vehicle['invMake'].' '.$vehicle['invModel'].'</h2>';
+     echo '<span class="inventory__card-price">'.$vehicle['invPrice'].'</span>';
+     echo '</div>'; # inventory__card-info
+     echo '</a>'; # inventory__card
+    }
+    echo '</div>';
   }
 
   function goToRoot() {

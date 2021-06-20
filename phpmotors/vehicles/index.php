@@ -94,13 +94,15 @@
 				$invColor,                     # invColor
 			);
 
+			// @TODO: There's a bug here where ONLY updating image will make it look like nothing has changed
+			// and trigger a false error; this might be able to be fixed by adding the images first.
 			if ($updateResult < 1) {
 				$message = $message = '<p class="message-error">An error has occured. Please try again later.</p>';
 				include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/edit.php';
 				exit;
 			}
 
-			if ($_FILES['invImage']){
+			if ($_FILES['invImage']['size'] > 0){
 				$imagePaths = addInventoryImages($invId, $_FILES['invImage']);
 				updateVehicleImages($invId, $imagePaths['invImage'], $imagePaths['invThumbnail']);
 			}
@@ -110,6 +112,7 @@
 			header('location: /phpmotors/vehicles/');
 			exit;
 		case 'Destroy':
+			// @TODO: delete associated images
 			$invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 			$invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
 			$invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
@@ -167,6 +170,13 @@
 			$invImage = $invInfo['invImage'];
 	
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/delete.php';
+			exit;
+		case 'Index':
+			$classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_STRING);
+			$classification = isset($classificationId) ? getClassification($classificationId) : null;
+			$inventory = isset($classificationId) ? getInventoryByClassification($classificationId) : getAllInventory();
+			
+			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/index.php';
 			exit;
 		case 'New':
 			$classificationId = '';
