@@ -60,11 +60,11 @@
       echo '<p class="message-info">No vehicles available.</p>';
     }
     foreach ($inventory as $vehicle) {
-     echo '<a class="inventory__card" href="#">';
-     echo '<div class="inventory__card-image"><img src="'.safeImagePath($vehicle['invThumbnail']).'" alt="Image of '.$vehicle['invMake'].' '.$vehicle['invModel'].' on phpmotors.com"></div>';
+     echo '<a class="inventory__card" href="/phpmotors/vehicles?action=Show&vehicleId='.$vehicle['invId'].'">';
+     echo '<div class="inventory__card-image"><img src="'.safeImagePath($vehicle['invThumbnail']).'" alt="'.vehicleDisplayName($vehicle).' on phpmotors.com"></div>';
      echo '<div class="inventory__card-info">';
      echo '<h2>'.$vehicle['invMake'].' '.$vehicle['invModel'].'</h2>';
-     echo '<span class="inventory__card-price">'.$vehicle['invPrice'].'</span>';
+     echo '<span class="inventory__card-price">'.vehiclePrice($vehicle).'</span>';
      echo '</div>'; # inventory__card-info
      echo '</a>'; # inventory__card
     }

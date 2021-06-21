@@ -15,7 +15,7 @@
     <main>
       <h1>
         <?php
-          echo "Are you sure you want to delete $invMake $invModel";
+          echo "Are you sure you want to delete $invMake $invModel?";
         ?>
       </h1>
       <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>

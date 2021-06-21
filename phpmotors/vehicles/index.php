@@ -4,6 +4,8 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/vehicles-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/fileops.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/vehicle.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/user.php';
 
 	$action = filter_input(INPUT_POST, 'action');
 	if ($action == NULL){
@@ -170,6 +172,14 @@
 			$invImage = $invInfo['invImage'];
 	
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/delete.php';
+			exit;
+		case 'Show':
+			$vehicleId = filter_input(INPUT_GET, 'vehicleId', FILTER_SANITIZE_STRING);
+			$vehicle = getInvItemInfo($vehicleId);
+			$classificationId = $vehicle['classificationId'];
+			$classification = getClassification($classificationId);
+
+			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/show.php';
 			exit;
 		case 'Index':
 			$classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_STRING);

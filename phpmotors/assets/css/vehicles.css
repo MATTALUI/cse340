@@ -12,6 +12,10 @@
 .inventory__card-image {
   border-radius: 1rem 1rem 0 0;
   height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .inventory__card-image > img {
@@ -32,6 +36,19 @@
   margin: 0;
 }
 
+.inventory__card-price {
+  font-weight: bold;
+}
+
+#vehicleAdminPanel {
+  border-top: 1px solid var(--dark);
+  margin-top: 1rem;
+}
+
+#vehicleAdminPanel > h2 {
+  margin-top: 0.5rem;
+}
+
 /* MEDIUM SCREENS */
 @media screen and (min-width: 568px) {
   .inventory__card {
@@ -45,14 +62,25 @@
 
 /* LARGE SCREENS */
 @media screen and (min-width: 1440px) {
-  #inventoryCards {
+  #vehicleMain, #inventoryCards {
+    display: grid;
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(1, 1fr);
+  }
+
+  #vehicleMain {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #inventoryCards {
     grid-template-columns: repeat(4, 1fr);
   }
 
   #inventoryCards > .message-info {
     grid-column: 1 / 5;
+  }
+
+  #vehicleMain > #vehicleAdminPanel {
+    grid-column: 1 / 3;
   }
 }
