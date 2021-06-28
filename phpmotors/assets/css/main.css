@@ -282,6 +282,11 @@ tr:nth-child(even) {
     max-width: 75%;
     padding: 0.5rem;
   }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* LARGE SCREENS */
@@ -294,5 +299,9 @@ tr:nth-child(even) {
 
   .image-preview > img {
     max-width: 50%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

@@ -1,0 +1,9 @@
+.upload__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload__card-image > img {
+  width: 100%; 
+}

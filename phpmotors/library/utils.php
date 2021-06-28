@@ -89,4 +89,17 @@
       return '/phpmotors/'.$DEFAULT_INVENTORY_IMAGE_PATH;
     }
   }
+
+  function buildImageDisplay($images) {
+    if (!isset($images) || count($images) === 0) {
+      echo '<p class="message-info">There are no images to display.</p>';
+    } else {
+      foreach ($images as $image) {
+        echo '<div class="upload__card">';
+        echo '<div class="upload__card-image"><img src="'.safeImagePath($image['imgPath']).'" alt="preview for upload"></div>';
+        echo '<a href="/phpmotors/uploads/index.php?action=Destroy&imgId='.$image['imgId'].'" data-confirm="This will permanantly delete this image. Are you sure?">'.$image['imgName'].'</a>';
+        echo '</div>';
+       }
+    }
+  }
 ?>

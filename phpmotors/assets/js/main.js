@@ -1,3 +1,5 @@
+const PHPMUtils = {};
+
 (() => {
   const addSafeListener = (selector, event, handler) => {
     const eles = document.querySelectorAll(selector);
@@ -36,10 +38,33 @@
 
   // Helper to replace broken images with default image
   const replaceBrokenImage = event => event.target.src = '/phpmotors/assets/images/no-image.png';
-  
+
+  // Helper to allow data-confirm
+  const useConfirm = event => {
+    if (!confirm(event.target.dataset.confirm)) {
+      event.preventDefault();
+
+      return false;
+    }
+  }
+
+  // Helpers for other scripts
+  PHPMUtils.useImageFilePreview = (inputSelector, previewContainerSelector) => {
+    const imageInput = document.querySelector(inputSelector);
+    imageInput.addEventListener('change', () => {
+      const file = imageInput.files[0];
+      if (file) {
+        const src = URL.createObjectURL(file);
+        const image = `<img src="${src}" alt="image preview" />`
+        document.querySelector(previewContainerSelector).innerHTML = image;
+      }
+    });
+  }
 
   addSafeListener('nav button', 'click', toggleNavigation);
   addSafeListener('input[type="file"]', 'change', manageFileInputLabels);
+  addSafeListener('[data-confirm]', 'click', useConfirm);
   setRequiredFieldLabels();
   useFileInputButtonLabels();
+  Object.freeze(PHPMUtils);
 })();

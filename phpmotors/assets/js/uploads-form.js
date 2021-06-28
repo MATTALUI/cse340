@@ -1,0 +1,3 @@
+(() => {
+  PHPMUtils.useImageFilePreview('#image', '#imagePreview');
+})();
