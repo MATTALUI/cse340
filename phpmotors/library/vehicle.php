@@ -1,4 +1,6 @@
 <?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/constants.php';
+
   function vehicleDisplayName($vehicle) {
     return $vehicle['invMake'].' '.$vehicle['invModel'];
   }
@@ -21,5 +23,17 @@
       }
     }
     echo '</select>';
+  }
+
+  function buildImagePath($vehicle){
+    global $INVENTORY_IMAGE_DIRECTORY;
+    
+    return $INVENTORY_IMAGE_DIRECTORY.$vehicle['invId'].'/'.$vehicle['invImage'];
+  }
+
+  function buildThumbnailPath($vehicle){
+    global $INVENTORY_IMAGE_DIRECTORY;
+    
+    return $INVENTORY_IMAGE_DIRECTORY.$vehicle['invId'].'/'.$vehicle['invThumbnail'];
   }
 ?>

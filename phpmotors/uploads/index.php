@@ -33,6 +33,11 @@
         $message = '<p class="message-error">You must select a vehicle and image file for the vehicle.</p>';
       } else {
         $imgPaths = addInventoryImages($invId, $invImage);
+
+        if ($imgPrimary) {
+          clearPrimaryImage($invId);
+          updateVehicleImages($invId, $imgName, makeThumbnailName($imgName));
+        }
             
         $result = storeImage($imgPaths['invImage'], $invId, $imgName, $imgPrimary);
         $result += storeImage($imgPaths['invThumbnail'], $invId, makeThumbnailName($imgName), $imgPrimary);

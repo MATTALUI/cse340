@@ -48,7 +48,7 @@
     $stmt->execute();
     $result = $stmt->rowCount();
     $stmt->closeCursor();
-    
+
     return $result;
   }
 
@@ -64,5 +64,37 @@
     $stmt->closeCursor();
 
     return $imageMatch;
+  }
+
+  function setAsPrimaryImage($invId, $imgName) {
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE images
+      SET imgPrimary = 1
+      WHERE invId = :invId
+      AND imgName = :imgName'; 
+    $stmt = $db->prepare($sql);
+  
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->bindValue(':imgId', $invId, PDO::PARAM_STR);
+  
+    $stmt->execute();
+    $stmt->closeCursor();
+  
+    return $stmt->rowCount();
+  }
+
+  function clearPrimaryImage($invId) {
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE images
+      SET imgPrimary = 0
+      WHERE invId = :invId'; 
+    $stmt = $db->prepare($sql);
+  
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  
+    $stmt->execute();
+    $stmt->closeCursor();
+  
+    return $stmt->rowCount();
   }
 ?>

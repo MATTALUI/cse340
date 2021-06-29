@@ -56,7 +56,7 @@
           <label for="classification">Classification</label>
           <?php buildClassificationSelect($classifications, $classificationId); ?>
           <div id="inventoryPreview" class="image-preview">
-            <img src="<?php echo safeImagePath($invImage); ?>" alt="vehicle preview"/>
+            <img src="<?php echo safeImagePath(buildImagePath($invInfo)); ?>" alt="vehicle preview"/>
           </div>
           <label for="image">Upload New Image</label>
           <input id="image" name="invImage" type="file" />

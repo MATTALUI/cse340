@@ -3,6 +3,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/common.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/vehicles-model.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/uploads-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/fileops.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/vehicle.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/user.php';
@@ -52,8 +53,14 @@
 			);
 
 			if ($_FILES['invImage']['size'] > 0){
+				$imgName = $_FILES['invImage']['name'];
+				$imgPrimary = 1; // Make it the primary if they uploaded it manually
 				$imagePaths = addInventoryImages($newVehicleId, $_FILES['invImage']);
-				updateVehicleImages($newVehicleId, $imagePaths['invImage'], $imagePaths['invThumbnail']);
+				updateVehicleImages($newVehicleId, $imgName, makeThumbnailName($imgName));
+            
+				clearPrimaryImage($newVehicleId);
+        storeImage($imagePaths['invImage'], $newVehicleId, $imgName, $imgPrimary);
+        storeImage($imagePaths['invThumbnail'], $newVehicleId, makeThumbnailName($imgName), $imgPrimary);
 			}
 
 			$message = '<p class="message-success">Vehicle successfully created.</p>';
@@ -105,8 +112,14 @@
 			}
 
 			if ($_FILES['invImage']['size'] > 0){
+				$imgName = $_FILES['invImage']['name'];
+				$imgPrimary = 1; // Make it the primary if they uploaded it manually
 				$imagePaths = addInventoryImages($invId, $_FILES['invImage']);
-				updateVehicleImages($invId, $imagePaths['invImage'], $imagePaths['invThumbnail']);
+				updateVehicleImages($invId, $imgName, makeThumbnailName($imgName));
+            
+				clearPrimaryImage($invId);
+        storeImage($imagePaths['invImage'], $invId, $imgName, $imgPrimary);
+        storeImage($imagePaths['invThumbnail'], $invId, makeThumbnailName($imgName), $imgPrimary);
 			}
 
 			$_SESSION['message'] = '<p class="message-success">Congratulations, the '.$invMake.' '.$invModel.' was successfully updated.</p>';
