@@ -1,4 +1,6 @@
 <?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/vehicle.php';
+
   function checkEmail($clientEmail){
     $valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);
     return $valEmail;
@@ -61,7 +63,7 @@
     }
     foreach ($inventory as $vehicle) {
      echo '<a class="inventory__card" href="/phpmotors/vehicles?action=Show&vehicleId='.$vehicle['invId'].'">';
-     echo '<div class="inventory__card-image"><img src="'.safeImagePath($vehicle['invThumbnail']).'" alt="'.vehicleDisplayName($vehicle).' on phpmotors.com"></div>';
+     echo '<div class="inventory__card-image"><img src="'.safeImagePath(buildThumbnailPath($vehicle)).'" alt="'.vehicleDisplayName($vehicle).' on phpmotors.com"></div>';
      echo '<div class="inventory__card-info">';
      echo '<h2>'.$vehicle['invMake'].' '.$vehicle['invModel'].'</h2>';
      echo '<span class="inventory__card-price">'.vehiclePrice($vehicle).'</span>';

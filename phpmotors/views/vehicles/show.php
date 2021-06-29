@@ -18,7 +18,7 @@
       <div id="vehicleMain">
         <div class="inventory__card">
           <div class="inventory__card-image">
-            <img src="<?php echo safeImagePath($vehicle['invImage']); ?>" alt="image for <?php echo vehicleDisplayName($vehicle); ?>">
+            <img src="<?php echo safeImagePath(buildImagePath($vehicle)); ?>" alt="image for <?php echo vehicleDisplayName($vehicle); ?>">
           </div>
           <div class="inventory__card-info">
             <span class="inventory__card-price">
