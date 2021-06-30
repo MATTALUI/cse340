@@ -21,16 +21,18 @@
       <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
       <div id="featured">
         <div id="featured-description">
-          <span>DMC Delorean</span>
+          <span>
+            <?php echo isset($featuredVehicle) ? vehicleDisplayName($featuredVehicle) : 'DMC Delorean'; ?>
+          </span>
           <span>3 cup holders</span>
           <span>Superman doors</span>
           <span>Fuzzy dice!</span>
         </div>
-        <img src="/phpmotors/assets/images/delorean.jpg" alt="The delorean car">
-        <button>Own Today</button>
+        <img src="<?php echo isset($featuredVehicle) ? safeImagePath(buildImagePath($featuredVehicle)) : '/phpmotors/assets/images/delorean.jpg'; ?>" alt="The delorean car">
+        <a class="button" href="<?php echo isset($featuredVehicle) ? '/phpmotors/vehicles?action=Show&vehicleId='.$featuredVehicle['invId'] : '#';?>">Own Today</a>
       </div>
       <div id="reviews">
-        <h2>DMC Delorean reviews</h2>
+        <h2><?php echo isset($featuredVehicle) ? vehicleDisplayName($featuredVehicle) : 'DMC Delorean'; ?> reviews</h2>
         <ul>
           <?php
             $reviews = [
@@ -47,7 +49,7 @@
         </ul>
       </div>
       <div id="upgrades">
-        <h2>Delorean Upgrades</h2>
+        <h2><?php echo isset($featuredVehicle) ? $featuredVehicle['invModel'] : 'DMC Delorean'; ?> Upgrades</h2>
         <?php
           $upgrades = [
             array("name" => "Flame Decals", "img" => "flame.jpg"),

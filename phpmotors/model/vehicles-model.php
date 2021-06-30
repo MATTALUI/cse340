@@ -149,7 +149,23 @@
     $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_INT); 
     $stmt->execute(); 
     $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-    $stmt->closeCursor(); 
+    $stmt->closeCursor();
+
+    return $inventory; 
+  }
+
+  // @NOTE: The AC of the assignment specifically requested the Delorean on the
+  // homepage, but it didn't state specific logic for anything beyond that. So
+  // This is how we're going to query for it since DBs aren't going to match up
+  // ¯\_(ツ)_/¯
+  function getDelorean() {
+    $db = phpmotorsConnect(); 
+    $sql = 'SELECT * FROM inventory WHERE UPPER(invModel) = UPPER("DELOREAN")'; 
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $inventory = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+
     return $inventory; 
   }
 ?>

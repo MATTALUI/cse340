@@ -23,7 +23,7 @@
   font-size: 1rem;
 }
 
-#featured > button {
+#featured > .button {
   background-color: var(--secondary-blue);
   border: 0.125rem solid var(--dark);
   color: var(--dark);
@@ -33,7 +33,7 @@
   padding: 0.5rem 1rem;
 }
 
-#featured > button:active {
+#featured > .button:active {
   background-color: var(--accent-blue);
 }
 
@@ -82,13 +82,12 @@
     grid-column: 1/3;
   }
 
-  #featured > button {
+  #featured > .button {
     position: absolute;
     left: 0;
     top: 4.5rem;
     width: auto;
     font-size: 1.2rem;
-    margin: 0;
     padding: 0.125rem 0.5rem;
   }
 }
