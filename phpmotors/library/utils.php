@@ -78,7 +78,7 @@
     if (isset($images)) {
       foreach ($images as $image) {
         if(isThumbnail($image['imgPath'])){
-          echo '<img src="'.$image['imgPath'].'" alt="vehicle thumbnail"/>';
+          echo '<img src="'.$image['imgPath'].'" alt="vehicle thumbnail '.$image['imgId'].'"/>';
         }
       }
     }
