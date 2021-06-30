@@ -39,6 +39,22 @@
     return $imageArray;
   }
 
+  function getImagesForInventory($invId){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM images
+      WHERE invId = :invId
+      ORDER BY imgPrimary DESC';
+    $stmt = $db->prepare($sql);
+  
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+
+    $stmt->execute();
+    $imageArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+  
+    return $imageArray;
+  }
+
   // Delete image information from the images table
   function deleteImage($imgId) {
     $db = phpmotorsConnect();

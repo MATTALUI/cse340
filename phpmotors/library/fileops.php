@@ -9,6 +9,10 @@
     return $image;
   }
 
+  function isThumbnail($imgPath) {
+    return strpos($imgPath, '-tn.') !== false;
+  }
+
   function addInventoryImages($vehicleId, $invImage){
     // @TODO: error handling
     // @TODO: validate based on file extension

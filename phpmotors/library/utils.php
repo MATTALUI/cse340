@@ -63,7 +63,7 @@
     }
     foreach ($inventory as $vehicle) {
      echo '<a class="inventory__card" href="/phpmotors/vehicles?action=Show&vehicleId='.$vehicle['invId'].'">';
-     echo '<div class="inventory__card-image"><img src="'.safeImagePath(buildThumbnailPath($vehicle)).'" alt="'.vehicleDisplayName($vehicle).' on phpmotors.com"></div>';
+     echo '<div class="inventory__card-image"><img class="active" src="'.safeImagePath(buildThumbnailPath($vehicle)).'" alt="'.vehicleDisplayName($vehicle).' on phpmotors.com"></div>';
      echo '<div class="inventory__card-info">';
      echo '<h2>'.$vehicle['invMake'].' '.$vehicle['invModel'].'</h2>';
      echo '<span class="inventory__card-price">'.vehiclePrice($vehicle).'</span>';
@@ -71,6 +71,31 @@
      echo '</a>'; # inventory__card
     }
     echo '</div>';
+  }
+
+  function buildInventoryThumbnailGrid($images) {
+    echo '<div class="inventory__card-thumbnails">';
+    if (isset($images)) {
+      foreach ($images as $image) {
+        if(isThumbnail($image['imgPath'])){
+          echo '<img src="'.$image['imgPath'].'" alt="vehicle thumbnail"/>';
+        }
+      }
+    }
+    echo '</div>';
+  }
+
+  function buildInventoryCardImages($images) {
+    if (isset($images)) {
+      $first = true;
+      foreach ($images as $image) {
+        $class = $first ? 'active' : '';
+        if(!isThumbnail($image['imgPath'])){
+          echo '<img src="'.$image['imgPath'].'" alt="vehicle" class="'.$class.'"/>';
+        }
+        $first = false;
+      }
+    }
   }
 
   function goToRoot() {

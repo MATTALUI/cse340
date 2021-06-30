@@ -56,6 +56,8 @@
 				$imgName = $_FILES['invImage']['name'];
 				$imgPrimary = 1; // Make it the primary if they uploaded it manually
 				$imagePaths = addInventoryImages($newVehicleId, $_FILES['invImage']);
+				// @TODO: when adding the image names to the inventory table, we need
+				// to make sure names are truncated otherwise it breaks table constraints.
 				updateVehicleImages($newVehicleId, $imgName, makeThumbnailName($imgName));
             
 				clearPrimaryImage($newVehicleId);
@@ -113,8 +115,10 @@
 
 			if ($_FILES['invImage']['size'] > 0){
 				$imgName = $_FILES['invImage']['name'];
-				$imgPrimary = 1; // Make it the primary if they uploaded it manually
+				$imgPrimary = 1; // Make it the primary since they uploaded it manually
 				$imagePaths = addInventoryImages($invId, $_FILES['invImage']);
+				// @TODO: when adding the image names to the inventory table, we need
+				// to make sure names are truncated otherwise it breaks table constraints.
 				updateVehicleImages($invId, $imgName, makeThumbnailName($imgName));
             
 				clearPrimaryImage($invId);
@@ -191,6 +195,7 @@
 			$vehicle = getInvItemInfo($vehicleId);
 			$classificationId = $vehicle['classificationId'];
 			$classification = getClassification($classificationId);
+			$images = getImagesForInventory($vehicleId);
 
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/show.php';
 			exit;

@@ -35,6 +35,8 @@
         $imgPaths = addInventoryImages($invId, $invImage);
 
         if ($imgPrimary) {
+          // @TODO: when adding the image names to the inventory table, we need
+				  // to make sure names are truncated otherwise it breaks table constraints.
           clearPrimaryImage($invId);
           updateVehicleImages($invId, $imgName, makeThumbnailName($imgName));
         }

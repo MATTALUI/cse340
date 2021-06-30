@@ -3,6 +3,7 @@
   <head>
     <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/shared_head.php'; ?>
     <link rel="stylesheet" href="/phpmotors/assets/css/vehicles.css" media="screen">
+    <script src="/phpmotors/assets/js/vehicles-show.js" defer></script>
     <title>PHP Motors | 
       <?php echo vehicleDisplayName($vehicle); ?>
     </title>
@@ -18,8 +19,19 @@
       <div id="vehicleMain">
         <div class="inventory__card">
           <div class="inventory__card-image">
-            <img src="<?php echo safeImagePath(buildImagePath($vehicle)); ?>" alt="image for <?php echo vehicleDisplayName($vehicle); ?>">
+            <?php 
+              if (isset($images) && count($images) > 1) {
+                buildInventoryCardImages($images);
+              } else {
+                echo '<img src="'.safeImagePath(buildImagePath($vehicle)).'" alt="image for '.vehicleDisplayName($vehicle).'" class="active">';
+              }
+            ?>
           </div>
+          <?php 
+            if (isset($images) && count($images) > 1) {
+              buildInventoryThumbnailGrid($images);
+            }
+          ?>
           <div class="inventory__card-info">
             <span class="inventory__card-price">
               <? echo vehiclePrice($vehicle); ?>
