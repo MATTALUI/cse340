@@ -1,9 +1,32 @@
 <?php
+  $BASE_INVENTORY_SELECTION =
+    'SELECT invId
+    , invMake
+    , invModel
+    , invDescription
+    , invPrice
+    , invStock
+    , invColor
+    , classificationId
+    , ( SELECT imgName
+        FROM images
+        WHERE images.invId = inventory.invId
+        AND images.imgPrimary = 1
+        AND images.imgName NOT LIKE "%-tn.%")
+      AS invImage
+    , ( SELECT imgName
+        FROM images
+        WHERE images.invId = inventory.invId
+        AND images.imgPrimary = 1
+        AND images.imgName LIKE "%-tn.%")
+      AS invThumbnail
+    FROM inventory ';
 
   function getAllInventory() {
     // @TODO: Paginate to prevent mega queries
+    global $BASE_INVENTORY_SELECTION;
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory ORDER BY invMake ASC';
+    $sql = $BASE_INVENTORY_SELECTION.'ORDER BY invMake ASC';
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -14,8 +37,9 @@
 
   // Get vehicle information by invId
   function getInvItemInfo($invId){
+    global $BASE_INVENTORY_SELECTION;
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+    $sql = $BASE_INVENTORY_SELECTION.'WHERE invId = :invId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
@@ -143,8 +167,9 @@
   }
 
   function getInventoryByClassification($classificationId){
+    global $BASE_INVENTORY_SELECTION;
     $db = phpmotorsConnect(); 
-    $sql = 'SELECT * FROM inventory WHERE classificationId = :classificationId'; 
+    $sql = $BASE_INVENTORY_SELECTION.'WHERE classificationId = :classificationId'; 
     $stmt = $db->prepare($sql); 
     $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_INT); 
     $stmt->execute(); 
@@ -159,8 +184,9 @@
   // This is how we're going to query for it since DBs aren't going to match up
   // ¯\_(ツ)_/¯
   function getDelorean() {
+    global $BASE_INVENTORY_SELECTION;
     $db = phpmotorsConnect(); 
-    $sql = 'SELECT * FROM inventory WHERE UPPER(invModel) = UPPER("DELOREAN")'; 
+    $sql = $BASE_INVENTORY_SELECTION.'WHERE UPPER(invModel) = UPPER("DELOREAN")'; 
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $inventory = $stmt->fetch(PDO::FETCH_ASSOC);
