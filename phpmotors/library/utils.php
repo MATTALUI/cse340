@@ -106,6 +106,7 @@
     }
     $uri .= $_SERVER['HTTP_HOST'];
     header('Location: '.$uri.'/phpmotors/index.php');
+    exit;
   }
 
   function safeImagePath($path) {
@@ -126,7 +127,34 @@
         echo '<div class="upload__card-image"><img src="'.safeImagePath($image['imgPath']).'" alt="preview for upload"></div>';
         echo '<a href="/phpmotors/uploads/index.php?action=Destroy&imgId='.$image['imgId'].'" data-confirm="This will permanantly delete this image. Are you sure?">'.$image['imgName'].'</a>';
         echo '</div>';
-       }
+      }
+    }
+  }
+
+  function buildReviews($reviews) {
+    $clientId = getUserData()['clientId'];
+    if (!isset($reviews) || count($reviews) === 0) {
+      echo '<p class="message-info">This vehicle has no reviews.</p>';
+    } else {
+      foreach ($reviews as $review) {
+        $reviewerName = $review['reviewerFirstname'].' '.$review['reviewerLastname'];
+        $isUser = $review['clientId'] === $clientId;
+        $extraClass = $isUser ? 'owned' : '';
+
+        echo '<div class="review '.$extraClass.'">';
+        echo '<div class="review__namecard"><span>'.$reviewerName.'</span></div>';
+        echo '<div class="review__text"><span>'.$review['reviewText'].'</span></div>';
+        echo '<div class="review__footer">';
+        echo '<span>'.$review['reviewDate'].'</span>';
+        if ($isUser) {
+          echo '<span>';
+          echo '<a href="/phpmotors/reviews/index.php?action=Edit&review='.$review['reviewId'].'">Edit</a>';
+          echo '<a href="/phpmotors/reviews/index.php?action=Destroy&review='.$review['reviewId'].'" data-confirm="This will permanantly delete this review. Are you sure?">Delete</a>';
+          echo '</span>';
+        }
+        echo '</div>';
+        echo '</div>';
+      }
     }
   }
 ?>

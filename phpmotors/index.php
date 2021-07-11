@@ -17,7 +17,7 @@
 			break;
 		default:
 			// @NOTE: The AC just said to display the delorean, but if there's not
-			// one in the DB it could br problematic. Some extra logic is included
+			// one in the DB it could be problematic. Some extra logic is included
 			// in the view to protect from that situation.
 			$featuredVehicle = getDelorean();
 

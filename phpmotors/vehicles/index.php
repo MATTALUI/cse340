@@ -3,6 +3,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/common.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/vehicles-model.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/reviews-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/uploads-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/fileops.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/vehicle.php';
@@ -196,6 +197,9 @@
 			$classificationId = $vehicle['classificationId'];
 			$classification = getClassification($classificationId);
 			$images = getImagesForInventory($vehicleId);
+			$reviews = getVehicleReviews($vehicleId);
+			$clientData = getUserData();
+			$userReviewed = checkUserReviewedVehicle($vehicleId, $clientData['clientId']);
 
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/show.php';
 			exit;

@@ -12,6 +12,16 @@
     });
   }
 
+  const toggleReviewForm = event => {
+    event.preventDefault();
+    const form = event.target.closest('#vehicleReviews').querySelector('form');
+    form.classList.toggle('hidden');
+  }
+
   document.querySelectorAll('.inventory__card-thumbnails > img')
     .forEach(e => e.addEventListener('click', changeImageFromThumbnail));
+
+  if(document.querySelector('#reviewTrigger')){
+    document.querySelector('#reviewTrigger').addEventListener('click', toggleReviewForm);
+  }
 })();

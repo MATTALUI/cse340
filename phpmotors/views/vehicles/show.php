@@ -43,6 +43,7 @@
         </div>
         <?php
           include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/_vehicle_table.php';
+          include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/_reviews.php';
           if (hasPrivledges()) {
             include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/_vehicle_admin_panel.php';
           }
