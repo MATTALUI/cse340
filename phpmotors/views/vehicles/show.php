@@ -16,6 +16,7 @@
         <?php echo vehicleDisplayName($vehicle); ?>
       </h1>
       <?php include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/common/messages.php'; ?>
+      <p>Scroll for reviews.</p>
       <div id="vehicleMain">
         <div class="inventory__card">
           <div class="inventory__card-image">

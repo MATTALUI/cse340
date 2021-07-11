@@ -104,6 +104,6 @@
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/reviews/delete.php';
 			break;
 		default:
-			goToRoot();
+			header('location: /phpmotors/accounts/index.php?action=Admin');
 	 }
 ?>

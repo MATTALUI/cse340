@@ -36,6 +36,22 @@
     return $review;
   }
 
+  function getUsersReviews($clientId) {
+    global $BASE_REVIEW_SELECTION;
+
+    $db = phpmotorsConnect(); 
+    $sql = $BASE_REVIEW_SELECTION.' WHERE reviews.clientId = :clientId';
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->execute(); 
+
+    $reviews = $stmt->fetchAll();
+    $stmt->closeCursor();
+    
+    return $reviews;
+  }
+
   function getReviewFromUserForVehicle($clientId, $invId) {
     global $BASE_REVIEW_SELECTION;
 

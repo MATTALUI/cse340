@@ -18,6 +18,7 @@ const PHPMUtils = {};
   const setRequiredFieldLabels = () => document
     .querySelectorAll('input[required]')
     .forEach(ele => 
+      document.querySelector(`label[for="${ele.getAttribute('id')}"]`) &&
       document.querySelector(`label[for="${ele.getAttribute('id')}"]`).classList.add('required')
     );
 
@@ -25,6 +26,7 @@ const PHPMUtils = {};
   const useFileInputButtonLabels = () => document
     .querySelectorAll('input[type="file"]')
     .forEach(ele => 
+      document.querySelector(`label[for="${ele.getAttribute('id')}"]`) &&
       document.querySelector(`label[for="${ele.getAttribute('id')}"]`).classList.add('button')
     );
 
