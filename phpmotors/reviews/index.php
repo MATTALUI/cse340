@@ -92,6 +92,17 @@
 
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/reviews/edit.php';
 			break;
+		case 'Delete':
+			// @NOTE: This view is required in the AC. Ideally we wouldn't need it since
+			// this can be done slightly less annoyingly using a JS alert.
+			$reviewId = filter_input(INPUT_GET, 'review', FILTER_SANITIZE_NUMBER_INT);
+			$review = getReview($reviewId);
+			protectReview($review);
+			$vehicleId = $review['invId'];
+			$vehicle = getInvItemInfo($vehicleId);
+	
+			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/reviews/delete.php';
+			break;
 		default:
 			goToRoot();
 	 }

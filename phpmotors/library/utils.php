@@ -149,7 +149,7 @@
         if ($isUser) {
           echo '<span>';
           echo '<a href="/phpmotors/reviews/index.php?action=Edit&review='.$review['reviewId'].'">Edit</a>';
-          echo '<a href="/phpmotors/reviews/index.php?action=Destroy&review='.$review['reviewId'].'" data-confirm="This will permanantly delete this review. Are you sure?">Delete</a>';
+          echo '<a href="/phpmotors/reviews/index.php?action=Delete&review='.$review['reviewId'].'" >Delete</a>';
           echo '</span>';
         }
         echo '</div>';
