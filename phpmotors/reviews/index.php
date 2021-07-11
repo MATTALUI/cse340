@@ -6,6 +6,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/vehicles-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/vehicle.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/review.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/user.php';
 
 	$action = filter_input(INPUT_POST, 'action');
 	if ($action == NULL){

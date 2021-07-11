@@ -1,5 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/vehicle.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/review.php';
 
   function checkEmail($clientEmail){
     $valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);
@@ -137,7 +138,7 @@
       echo '<p class="message-info">This vehicle has no reviews.</p>';
     } else {
       foreach ($reviews as $review) {
-        $reviewerName = $review['reviewerFirstname'].' '.$review['reviewerLastname'];
+        $reviewerName = buildReviewerDisplayName($review);
         $isUser = $review['clientId'] === $clientId;
         $extraClass = $isUser ? 'owned' : '';
 

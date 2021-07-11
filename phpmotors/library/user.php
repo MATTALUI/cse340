@@ -10,6 +10,11 @@
     return $userData['clientFirstname'].' '.$userData['clientLastname'];
   }
 
+  function userDisplayName($user) {
+    // Display the "screen name" (the first initial of the first name and the complete last name, with no spaces)
+    return strtoupper(substr($user['clientFirstname'], 0, 1)).'. '.$user['clientLastname'];
+  }
+
   function hasPrivledges() {
     global $BASIC_USER;
     if (isset($_SESSION['clientData'])) {

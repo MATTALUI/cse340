@@ -11,6 +11,8 @@
         }
       ?>
     </legend>
+    <label for="name">Reviewing As</label>
+    <input name="name" type="text" value="<?php echo userDisplayName($_SESSION['clientData']); ?>" readonly />
     <textarea rows="6" name="reviewText" required><?php if (isset($review)) { echo $review['reviewText']; }?></textarea>
     <input type="submit" value="Save Review"/>
   </fieldset>

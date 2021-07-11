@@ -13,4 +13,9 @@
       goToRoot();
     }
   }
+
+  function buildReviewerDisplayName($review) {
+    // Display the "screen name" (the first initial of the first name and the complete last name, with no spaces)
+    return strtoupper(substr($review['reviewerFirstname'], 0, 1)).'. '.$review['reviewerLastname'];
+  }
 ?>
