@@ -39,8 +39,14 @@
   function getUsersReviews($clientId) {
     global $BASE_REVIEW_SELECTION;
 
-    $db = phpmotorsConnect(); 
-    $sql = $BASE_REVIEW_SELECTION.' WHERE reviews.clientId = :clientId';
+    $db = phpmotorsConnect();
+    $sql = 'SELECT reviews.*
+    , inventory.invMake
+    , inventory.invModel
+    FROM reviews
+    JOIN inventory
+    ON reviews.invId = inventory.invId 
+    WHERE reviews.clientId = :clientId';
 
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);

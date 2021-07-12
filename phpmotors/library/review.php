@@ -18,4 +18,14 @@
     // Display the "screen name" (the first initial of the first name and the complete last name, with no spaces)
     return strtoupper(substr($review['reviewerFirstname'], 0, 1)).'. '.$review['reviewerLastname'];
   }
+
+  function formatReviewDate($review) {
+    // https://www.php.net/manual/en/datetime.format.php
+    $format = 'l, F j Y';
+    return date($format, strtotime($review['reviewDate']));
+  }
+
+  function formatReviewVehicleName($review) {
+    return $review['invMake'].' '.$review['invModel'];
+  }
 ?>

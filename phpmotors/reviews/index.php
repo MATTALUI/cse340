@@ -93,6 +93,12 @@
 
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/reviews/edit.php';
 			break;
+		case  'Manage':
+			$clientId = getUserData()['clientId'];
+			$reviews = getUsersReviews($clientId);
+
+			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/reviews/manage.php';
+			break;
 		case 'Delete':
 			// @NOTE: This view is required in the AC. Ideally we wouldn't need it since
 			// this can be done slightly less annoyingly using a JS alert.

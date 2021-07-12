@@ -146,7 +146,7 @@
         echo '<div class="review__namecard"><span>'.$reviewerName.'</span></div>';
         echo '<div class="review__text"><span>'.$review['reviewText'].'</span></div>';
         echo '<div class="review__footer">';
-        echo '<span>'.$review['reviewDate'].'</span>';
+        echo '<span>'.formatReviewDate($review).'</span>';
         if ($isUser) {
           echo '<span>';
           echo '<a href="/phpmotors/reviews/index.php?action=Edit&review='.$review['reviewId'].'">Edit</a>';
@@ -156,6 +156,24 @@
         echo '</div>';
         echo '</div>';
       }
+    }
+  }
+
+  function buildReviewsTable($reviews){
+    if (!isset($reviews) || count($reviews) === 0) {
+      echo '<p class="message-info">You have no reviews. <a href="/phpmotors/vehicles/index.php?action=Index">Browse our available inventory</a> to add some reviews.</p>';
+    } else {
+      echo '<table><thead><tr><th>Vehicle</th><th>Review</th><th>Date</th><th></th><th></th></tr></thead><tbody>';
+      foreach ($reviews as $review) {
+        echo '<tr>';
+        echo '<td><a href="/phpmotors/vehicles/index.php?action=Show&vehicleId='.$review['invId'].'">'.formatReviewVehicleName($review).'</a></td>';
+        echo '<td>'.$review['reviewText'].'</td>';
+        echo '<td>'.formatReviewDate($review).'</td>';
+        echo '<td><a href="/phpmotors/reviews/index.php?action=Edit&review='.$review['reviewId'].'">Edit</a></td>';
+        echo '<td><a href="/phpmotors/reviews/index.php?action=Delete&review='.$review['reviewId'].'" >Delete</a></td>';
+        echo '</tr>';
+      }
+      echo '</tbody></table>';
     }
   }
 ?>

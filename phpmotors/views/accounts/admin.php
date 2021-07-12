@@ -20,6 +20,7 @@
       </ul>
       <?php
         include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/_account_panel.php';
+        include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/_reviews_panel.php';
         if (hasPrivledges()) {
           include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/accounts/_admin_panel.php';
         }
