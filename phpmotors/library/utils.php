@@ -163,7 +163,7 @@
     if (!isset($reviews) || count($reviews) === 0) {
       echo '<p class="message-info">You have no reviews. <a href="/phpmotors/vehicles/index.php?action=Index">Browse our available inventory</a> to add some reviews.</p>';
     } else {
-      echo '<table><thead><tr><th>Vehicle</th><th>Review</th><th>Date</th><th></th><th></th></tr></thead><tbody>';
+      echo '<table><thead><tr><th>Vehicle</th><th>Review</th><th>Date</th><th><span class="hidden">Edit Links</span></th><th><span class="hidden">Delete Links</span></th></tr></thead><tbody>';
       foreach ($reviews as $review) {
         echo '<tr>';
         echo '<td><a href="/phpmotors/vehicles/index.php?action=Show&vehicleId='.$review['invId'].'">'.formatReviewVehicleName($review).'</a></td>';
