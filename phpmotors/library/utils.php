@@ -136,7 +136,7 @@
     $clientData = getUserData();
     $clientId = isset($clientData) ? $clientData['clientId'] : NULL;
     if (!isset($reviews) || count($reviews) === 0) {
-      echo '<p class="message-info">This vehicle has no reviews.</p>';
+      echo '<p class="message-info reviewTrigger">This vehicle has no reviews. <a href="/phpmotors/accounts/index.php?action=Login">Be the first to review!</a></p>';
     } else {
       foreach ($reviews as $review) {
         $reviewerName = buildReviewerDisplayName($review);

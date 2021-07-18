@@ -5,7 +5,7 @@
       if (!isset($_SESSION['clientData'])) {
         echo '<a href="/phpmotors/accounts/index.php?action=Login">Log In to Add a Review</a>';
       } else if (!$userReviewed){
-        echo '<a id="reviewTrigger" href="#" aria-role="button">Add Review</a>';
+        echo '<a class="reviewTrigger" href="#" aria-role="button">Add Review</a>';
       }
     ?>
   </div>

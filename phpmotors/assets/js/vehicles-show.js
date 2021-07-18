@@ -13,6 +13,7 @@
   }
 
   const toggleReviewForm = event => {
+    if (!document.forms.length) { return; }
     event.preventDefault();
     const form = event.target.closest('#vehicleReviews').querySelector('form');
     form.classList.toggle('hidden');
@@ -21,7 +22,7 @@
   document.querySelectorAll('.inventory__card-thumbnails > img')
     .forEach(e => e.addEventListener('click', changeImageFromThumbnail));
 
-  if(document.querySelector('#reviewTrigger')){
-    document.querySelector('#reviewTrigger').addEventListener('click', toggleReviewForm);
-  }
+  
+  document.querySelectorAll('.reviewTrigger')
+    .forEach(ele => ele.addEventListener('click', toggleReviewForm));
 })();
