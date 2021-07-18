@@ -133,7 +133,8 @@
   }
 
   function buildReviews($reviews) {
-    $clientId = getUserData()['clientId'];
+    $clientData = getUserData();
+    $clientId = isset($clientData) ? $clientData['clientId'] : NULL;
     if (!isset($reviews) || count($reviews) === 0) {
       echo '<p class="message-info">This vehicle has no reviews.</p>';
     } else {

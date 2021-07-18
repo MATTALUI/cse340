@@ -15,9 +15,9 @@
 	}
 
 	$classifications = getClassifications();
-	requirePrivledge();
 	switch ($action){
 		case 'Create':
+			requirePrivledge();
 			$invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
 			$invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
 			$classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
@@ -71,6 +71,7 @@
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/manage.php';
 			exit;
 		case 'Update':
+			requirePrivledge();
 			$invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 			$invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
 			$invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
@@ -132,6 +133,7 @@
 			header('location: /phpmotors/vehicles/');
 			exit;
 		case 'Destroy':
+			requirePrivledge();
 			// @TODO: delete associated images
 			$invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 			$invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
@@ -155,6 +157,7 @@
 			echo json_encode($inventory);
 			break;
 		case 'Edit':
+			requirePrivledge();
 			$invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
 			$invInfo = getInvItemInfo($invId);
 			if(!$invInfo) {
@@ -175,6 +178,7 @@
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/edit.php';
 			exit;
 		case 'Delete':
+			requirePrivledge();
 			$invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
 			$invInfo = getInvItemInfo($invId);
 			if(!$invInfo) {
@@ -199,7 +203,8 @@
 			$images = getImagesForInventory($vehicleId);
 			$reviews = getVehicleReviews($vehicleId);
 			$clientData = getUserData();
-			$userReviewed = checkUserReviewedVehicle($vehicleId, $clientData['clientId']);
+			$clientId = isset($clientData) ? $clientData['clientId'] : NULL;
+			$userReviewed = checkUserReviewedVehicle($vehicleId, $clientId);
 
 			include $_SERVER['DOCUMENT_ROOT'].'/phpmotors/views/vehicles/show.php';
 			exit;
