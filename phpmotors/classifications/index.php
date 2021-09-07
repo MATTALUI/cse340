@@ -1,5 +1,5 @@
-<!-- CLASSIFICATIONS CONTROLLER -->
 <?php
+	/* CLASSIFICATIONS CONTROLLER */
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/common.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/accounts-model.php';

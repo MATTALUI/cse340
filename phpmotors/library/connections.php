@@ -4,6 +4,11 @@
     $dbname= 'phpmotors';
     $username = 'iclient';
     $password = '7ORL5q(VB4-4qQjA'; 
+    if ($_ENV['DOCKER'] == 'true') {
+      $server = 'mysql'; // The name of the container will resolve correctly
+      $username = 'root';
+      $password = 'some_password'; 
+    }
     $dsn = "mysql:host=$server;dbname=$dbname";
     $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 

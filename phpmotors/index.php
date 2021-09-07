@@ -1,5 +1,5 @@
-<!-- ROOT CONTROLLER -->
 <?php
+	/* ROOT CONTROLLER */
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/library/common.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/classifications-model.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/model/vehicles-model.php';
